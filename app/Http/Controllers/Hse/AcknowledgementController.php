@@ -55,7 +55,6 @@ class AcknowledgementController extends Controller
             return $th->getMessage();
         }
 
-
         return redirect()->route('ack.index');
     }
 

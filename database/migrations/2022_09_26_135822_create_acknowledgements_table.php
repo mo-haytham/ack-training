@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('acknowledgements', function (Blueprint $table) {
             $table->id();
-            $table->string('title',255);
+            $table->string('title', 255);
             $table->text('description');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

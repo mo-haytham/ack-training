@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', 'AuthController@get_login')->name('login');
+    Route::post('/login', 'AuthController@login')->name('post.login');
+});
+
 Route::redirect('/', '/acknowledgement');
 
-Route::namespace('App\Http\Controllers\Hse')->group(function () {
+Route::namespace('Hse')->middleware('auth')->group(function () {
     Route::prefix('acknowledgement')->group(function () {
         Route::get('/', 'AcknowledgementController@index')->name('ack.index');
         Route::get('/create', 'AcknowledgementController@create')->name('ack.create');

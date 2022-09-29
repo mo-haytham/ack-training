@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('acknowledgement_attachments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('acknowledgement_id')->refereces('acknowledgements')->onDelete('cascade');
+            $table->foreignId('acknowledgement_id')->constrained('acknowledgements')->onDelete('cascade');
             $table->string('file_name');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
